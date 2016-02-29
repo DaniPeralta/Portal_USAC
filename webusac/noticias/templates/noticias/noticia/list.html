@@ -1,0 +1,29 @@
+{% extends "noticias/base.html" %}
+{% load static %}
+
+
+{% block title %} Noticias {% endblock %}
+
+{% block content %}
+
+    <!--Principal -->
+    <h1 class="encabezado">Noticias</h1>
+        <div class="content_area">
+            <div class="row">
+                {% for noticia in noticias  %}
+                    <div class="col-sm-6 col-md-4">
+                        <!--Averiguar como modificar imagen. -->
+                        <img src="{% static "noticias/images/slider1.jpg" %}" alt="img1">
+                        <div class="caption">
+                            <h3>{{ noticia.title }}</h3>
+                            <p>{{ noticia.body|truncatewords:30|linebreaks }}</p>
+                            <p>
+                                <a href="{{ noticia.get_absolute_url }}" class="popular_more">Leer +</a>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+{% endblock %}

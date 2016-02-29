@@ -1,0 +1,109 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %} {% endblock %}</title>
+
+        <link href="{% static "noticias/css/style.css" %}" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="{% static "noticias/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static "noticias/css/font-awesome.min.css" %}">
+        <link rel="stylesheet" href="{% static "noticias/font/bebas/stylesheet.css" %}">
+        <link href="{% static "noticias/css/responsive.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "noticias/css/jquery.bxslider.css" %}" rel="stylesheet" media="screen">
+        <link href="{% static "noticias/css/style.css" %}" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+
+        <div class="body_wrapper">
+			<div class="center">
+				<div class="header_area">
+					<div class="logo floatleft">
+						<a href="index.html"> <img src="{% static "noticias/images/logo2.png" %}" alt="logo" /> </a>
+					</div>
+                </div>
+
+				<div class="main_menu_area">
+					<ul id="nav">
+						<li><a href="">Inicio</a>
+
+						</li>
+						<li><a href="">Noticias</a></li>
+						<li><a href="">Becas</a>
+							<ul>
+								<li><a href="">Europa</a></li>
+								<li><a href="">América del Norte</a></li>
+								<li><a href="">América del Sur</a></li>
+								<li><a href="">Asia</a></li>
+								<li><a href="">África</a></li>
+							</ul>
+						</li>
+						<li><a href="">Experiencias</a></li>
+					</ul>
+				</div>
+
+                <!--CONTENT-->
+                <div id="content" class="container">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+                <!--Footer-->
+				<div class="footer_bottom_area">
+					<div class="footer_top_area">
+						<div class="footer_menu">
+							<ul id="f_menu">
+								<li><a href="">Inicio</a></li>
+								<li><a href="">Noticias</a></li>
+								<li><a href="">Becas</a></li>
+								<li><a href="">Experiencias</a></li>
+							</ul>
+						</div>
+
+						<div class="copyright_text">
+							<p>Copyright © 2011 The News Reporter Inc. All rights reserved. PSD by GraphicsFuel.com<br/>
+								Reproduction in whole or in part in any form or medium without express written permission
+								of The News Reporter Inc. is prohibited. The trade marks and images used in the
+								design are the copyright of their respective owners. They are used only for display purpose.
+							</p>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+
+		<script type="text/javascript" src="{% static "noticias/js/selectnav.min.js" %}"></script>
+		<script type="text/javascript">
+			selectnav('nav', {
+			  label: '-Navigation-',
+			  nested: true,
+			  indent: '-'
+			});
+
+			selectnav('f_menu', {
+			  label: '-Navigation-',
+			  nested: true,
+			  indent: '-'
+			});
+		</script>
+		<script src="{% static "noticias/js/jquery-min.js" %}"></script>
+		<script src="{% static "noticias/js/jquery.fitvids.js" %}"></script>
+		<script src="{% static "noticias/js/jquery.bxslider.js" %}"></script>
+		<script type="text/javascript">
+			$('.bxslider').bxSlider({
+			  mode: 'fade',
+			  captions: true,
+			  auto: true,
+  			  autoControls: true,
+              pause: 2500
+			});
+		</script>
+		<script src="{% static "noticias/js/bootstrap.min.js" %}"></script>
+    </body>
+</html>
