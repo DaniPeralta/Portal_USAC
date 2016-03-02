@@ -7,6 +7,10 @@ def noticia_list(request):
 	noticias = Noticia.objects.all()
 	return render(request, 'noticias/noticia/list.html', {'noticias': noticias})
 
+def noticia_lastest(request):
+	noticias = Noticia.objects.all()
+	return render(request, 'index.html', {'noticias': noticias})
+
 def noticia_detail(request, year, month, day, noticia):
 	noticia = get_object_or_404(Noticia, slug=noticia,
 								publish__year = year,

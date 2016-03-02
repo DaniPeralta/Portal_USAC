@@ -1,4 +1,4 @@
-{% extends "noticias/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -9,21 +9,24 @@
     <!--Principal -->
     <h1 class="encabezado">Noticias</h1>
         <div class="content_area">
-            <div class="row">
-                {% for noticia in noticias  %}
-                    <div class="col-sm-6 col-md-4">
-                        <!--Averiguar como modificar imagen. -->
-                        <img src="{% static "noticias/images/slider1.jpg" %}" alt="img1">
-                        <div class="caption">
-                            <h3>{{ noticia.title }}</h3>
-                            <p>{{ noticia.body|truncatewords:30|linebreaks }}</p>
-                            <p>
-                                <a href="{{ noticia.get_absolute_url }}" class="popular_more">Leer +</a>
-                            </p>
+        <!--Intentar conseguir 3 noticias por fila para guardar estilo-->
+            {% for noticia in noticias  %}
+                {% cycle '<div class="row">' '' '' as div %}
+                        <div class="col-sm-6 col-md-4">
+                            <!--Comprobar que funciona fuera de DEBUG. -->
+                            <img src="{{ noticia.image.url }}" alt="img1">
+                            <div class="caption">
+                                <h3>{{ noticia.title }}</h3>
+                                <p>{{ noticia.body|truncatewords:30|linebreaks }}</p>
+                                <p>
+                                    <a href="{{ noticia.get_absolute_url }}" class="popular_more">Leer +</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
+                {% cycle '' '' '</div>' as div %}
+            {% endfor %}
+            {% if not noticias|length|divisibleby:3 %}
+                </div>
+            {% endif %}
         </div>
-
 {% endblock %}

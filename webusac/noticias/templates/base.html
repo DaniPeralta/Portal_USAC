@@ -1,3 +1,4 @@
+{% load noticias_tags %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
@@ -8,7 +9,6 @@
 
         <title>{% block title %} {% endblock %}</title>
 
-        <link href="{% static "noticias/css/style.css" %}" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="{% static "noticias/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
         <!-- Font Awesome -->
@@ -25,16 +25,16 @@
 			<div class="center">
 				<div class="header_area">
 					<div class="logo floatleft">
-						<a href="index.html"> <img src="{% static "noticias/images/logo2.png" %}" alt="logo" /> </a>
+						<a href="{% url "noticia_lastest" %}"> <img src="{% static "noticias/images/logo2.png" %}" alt="logo" /> </a>
 					</div>
                 </div>
 
 				<div class="main_menu_area">
 					<ul id="nav">
-						<li><a href="">Inicio</a>
+						<li><a href="{% url "noticia_lastest" %}">Inicio</a>
 
 						</li>
-						<li><a href="">Noticias</a></li>
+						<li><a href="{% url "noticias:noticia_list" %}">Noticias</a></li>
 						<li><a href="">Becas</a>
 							<ul>
 								<li><a href="">Europa</a></li>

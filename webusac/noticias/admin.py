@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Noticia
+from .models import Noticia, Experiencia, Pais
 
 # Register your models here.
 class NoticiaAdmin(admin.ModelAdmin):
@@ -11,3 +11,5 @@ class NoticiaAdmin(admin.ModelAdmin):
 	ordering = ['publish']
 
 admin.site.register(Noticia, NoticiaAdmin)
+admin.site.register(Experiencia)
+admin.site.register(Pais)

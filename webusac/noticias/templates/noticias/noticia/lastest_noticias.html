@@ -1,0 +1,24 @@
+    <div class="slider1 floatleft">
+        <ul class="bxslider">
+            {% for noticia in slider %}
+                <li><a href="{{ noticia.get_absolute_url }}"> <img src="{{ noticia.image.url }}" title="{{ noticia.title }}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="right_coloum floatright">
+        <div class="single_right_coloum">
+            <h2 class="title">+ noticias</h2>
+            <ul>
+                {% for noticia in lastest_noticias %}
+                    <li>
+                        <div class="single_cat_right_content">
+                            <h3>{{ noticia.title }}</h3>
+                            <p>{{ noticia.body|truncatewords:15|linebreaks }}</p>
+                            <p class="single_cat_right_content_meta"><a href="{{ noticia.get_absolute_url }}"><span>read more</span></a></p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>

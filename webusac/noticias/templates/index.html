@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load noticias_tags %}
+{% load static %}
+
+
+{% block title %} USAC Ingeniería {% endblock %}
+
+{% block content %}
+
+   <!--SLIDER-->
+    <div class="slider_area ">
+    <!--Columna Derecha-->
+        {% show_lastest_noticias %}
+    </div>
+
+    <div class="content_area">
+        <div class="container">
+            <h2 class="title">Experiencias</h2>
+            <div class="col-md-3">
+                <img src="images/single_featured.png" alt=""/>
+                <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+                <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+                <a class="readmore">read more</a>
+            </div>
+            <div class="col-md-3">
+                <img src="images/single_featured.png" alt=""/>
+                <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+                <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+                <a class="readmore">read more</a>
+            </div>
+            <div class="col-md-3">
+                <img src="images/single_featured.png" alt=""/>
+                <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+                <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+                <a class="readmore">read more</a>
+            </div>
+            <div class="col-md-3">
+                <img src="images/single_featured.png" alt=""/>
+                <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+                <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+                <a class="readmore">read more</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

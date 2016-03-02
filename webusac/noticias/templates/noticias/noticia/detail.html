@@ -1,4 +1,4 @@
-{% extends "noticias/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-1">
-                <img src="{% static "noticias/images/slider1.jpg" %}" class="img_not">
+                <img src="{{ noticia.image.url }}" class="img_not">
             </div>
         </div>
     </div>
