@@ -26,6 +26,7 @@ urlpatterns = [
 
 	# Mejorar esto. Deprecated
 	url(r'^$', 'noticias.views.noticia_lastest', name='noticia_lastest'),
+	url(r'^experiencias/$', 'noticias.views.experiencia_list', name='experiencia_list')
 ]
 
 # DEBUG.

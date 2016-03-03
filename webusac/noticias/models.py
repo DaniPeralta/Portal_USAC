@@ -46,12 +46,32 @@ class Pais(models.Model):
 	def __str__(self):
 		return self.name
 
+# Preguntar a Williams como lo ve. De momento lo vamos a reservar como atributo
+
+@python_2_unicode_compatible
+class Universidad(models.Model):
+	name = models.CharField(max_length=250)
+
+	def __str__(self):
+		return self.name
+
+@python_2_unicode_compatible
+class Anho(models.Model):
+	year = models.IntegerField()
+
+	def __str__(self):
+		return '{}'.format(self.year)
+
 
 @python_2_unicode_compatible
 class Experiencia(models.Model):
 	name_student = models.CharField(max_length=250)
 	experience = models.FileField(upload_to='experiences')
 	country = models.ForeignKey(Pais, related_name='experiences')
+	university = models.ForeignKey(Universidad, related_name='student')
+	#university = models.CharField(max_length=250, default='No universidad')
+	#year = models.DateField(default='2001-01-01')
+	year = models.ForeignKey(Anho, related_name='experiences')
 	thesis = models.FileField(upload_to='thesis')
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now_add=True)

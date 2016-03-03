@@ -264,3 +264,28 @@ margin-top: 0;}
 .encabezado{
 	margin-top:15px;
 }
+
+/*Imagen experiencias*/
+
+.img_exp{
+	height: 244px;
+	width: 365px;
+	border-radius: 10px 10px 10px 10px;
+    text-align: center;
+
+	margin: 20px 0px 10px 0px
+}
+
+.bandera{
+	height: 53px;
+	width: 93px;
+	margin: 15px 0px 0px 0px;
+}
+
+.year_exp{
+	color: #ff7f31;
+}
+
+.center_img{
+	text-align: center;
+}

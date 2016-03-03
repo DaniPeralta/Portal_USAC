@@ -6,8 +6,6 @@
 
 {% block content %}
 
-    <!--Principal -->
- <!--   <h1 class="encabezado">{{ noticia.title }}</h1> -->
     <!--Imagen -->
     <div class="container">
         <div class="row">
@@ -20,8 +18,10 @@
     <!--Texto -->
     <div class="container">
         <div class="row">
-            <h1>{{ noticia.title }}</h1>
-            <p> {{ noticia.body }}</p>
+            <div class="col-md-offset-1 col-md-10">
+                <h1>{{ noticia.title }}</h1>
+                <p>{{ noticia.body }}</p>
+            </div>
         </div>
     </div>
 

@@ -10,5 +10,6 @@ urlpatterns = [
 	# One Noticia
 	url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<noticia>[-\w]+)/$',
 		views.noticia_detail, name='noticia_detail'),
+
 ]
 
