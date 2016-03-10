@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Becas{% endblock %}
+
+{% block content %}
+    <h1 class="encabezado">Becas</h1>
+        <div class="content_area">
+            {% for t_beca in t_becas  %}
+                <h2 class="beca_type">{{ t_beca.type }}</h2>
+                <div class="accordion">
+                    {% for beca in t_beca.becas.all %}
+                        <div class="accordion-section">
+                            <a class="accordion-section-title" href="#beca{{ beca.id }}">{{ beca.name }}</a>
+                            <div id="beca{{ beca.id }}" class="accordion-section-content">
+                                <p>{{ beca.description }}</p>
+                                <p><a href="{{ beca.attach.url }}">Convocatoria</a>
+                                <a href="{% url "forms" %}">Aplicar</a> </p>
+
+                            </div><!--end .accordion-section-content-->
+                        </div><!--end .accordion-section-->
+                    {% endfor %}
+		        </div><!--end .accordion-->
+            {% endfor %}
+        </div>
+
+{% endblock %}

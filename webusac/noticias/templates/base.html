@@ -35,14 +35,14 @@
 
 						</li>
 						<li><a href="{% url "noticias:noticia_list" %}">Noticias</a></li>
-						<li><a href="">Becas</a>
-							<ul>
+						<li><a href="{% url "beca_list" %}">Becas</a>
+						<!--	<ul>
 								<li><a href="">Europa</a></li>
 								<li><a href="">América del Norte</a></li>
 								<li><a href="">América del Sur</a></li>
 								<li><a href="">Asia</a></li>
 								<li><a href="">África</a></li>
-							</ul>
+							</ul>-->
 						</li>
 						<li><a href="{% url "experiencia_list" %}">Experiencias</a></li>
 					</ul>
@@ -105,5 +105,7 @@
 			});
 		</script>
 		<script src="{% static "noticias/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "noticias/js/accordion.js" %}"></script>
+
     </body>
 </html>

@@ -30,12 +30,11 @@ class Noticia(models.Model):
 	def get_absolute_url(self):
 		return reverse('noticias:noticia_detail',
 					   args=[self.publish.year,
-							 self.publish.strftime('%m'),
-							 self.publish.strftime('%d'),
 							 self.slug])
 
 
 
+# Experiencias
 
 @python_2_unicode_compatible
 class Pais(models.Model):
@@ -46,7 +45,6 @@ class Pais(models.Model):
 	def __str__(self):
 		return self.name
 
-# Preguntar a Williams como lo ve. De momento lo vamos a reservar como atributo
 
 @python_2_unicode_compatible
 class Universidad(models.Model):
@@ -69,8 +67,6 @@ class Experiencia(models.Model):
 	experience = models.FileField(upload_to='experiences')
 	country = models.ForeignKey(Pais, related_name='experiences')
 	university = models.ForeignKey(Universidad, related_name='student')
-	#university = models.CharField(max_length=250, default='No universidad')
-	#year = models.DateField(default='2001-01-01')
 	year = models.ForeignKey(Anho, related_name='experiences')
 	thesis = models.FileField(upload_to='thesis')
 	created = models.DateTimeField(auto_now_add=True)
@@ -78,3 +74,37 @@ class Experiencia(models.Model):
 
 	def __str__(self):
 		return self.name_student
+
+	class Meta:
+		ordering = ('-year',)
+
+
+# Becas
+
+@python_2_unicode_compatible
+class T_Beca(models.Model):
+
+	STATUS_CHOICES = (('nacional', 'Nacional'), ('internacional', 'Internacional'),)
+	type = models.CharField(max_length=13, choices=STATUS_CHOICES,
+							default='nacional')
+
+	def __str__(self):
+		return self.type
+
+@python_2_unicode_compatible
+class Beca(models.Model):
+
+	name = models.CharField(max_length=250)
+	description = models.TextField()
+	course = models.ForeignKey(Anho, related_name='becas')
+	type = models.ForeignKey(T_Beca, related_name='becas')
+	date_start = models.DateField()
+	date_end = models.DateField()
+	attach = models.FileField(upload_to='PDF')
+
+	def __str__(self):
+		return self.name
+
+
+
+

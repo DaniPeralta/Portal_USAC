@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}Experiencias{% endblock %}
+{% block title %}Experience{% endblock %}
 
 {% block content %}
 
@@ -26,10 +26,16 @@
                     <img src="{{ pais.image.url }}" class="bandera">
                     <h4>{{ pais.name }}</h4>
                 </div>
-                {% for experiencia in pais.experiences.all %}
-                    <h5 class="year_exp">{{ experiencia.year }}</h5>
-                    <p><a href="{{ experiencia.experience.url }}">{{ experiencia.name_student }} - {{ experiencia.university }}</a></p>
+                {% regroup pais.experiences.all by year as exp_list  %}
+
+                {% for exps in exp_list %}
+                    <h5 class="year_exp">{{ exps.grouper }}</h5>
+                    {% for experiencia in exps.list %}
+                        <p><a href="{{ experiencia.experience.url }}">{{ experiencia.name_student }} - {{ experiencia.university }}</a></p>
+                    {% endfor %}
+
                 {% endfor %}
+
                 <hr/>
             {% endfor %}
         </div>

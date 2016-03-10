@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Formulario{% endblock %}
+
+{% block content %}
+    <h1 class="encabezado">Formulario</h1>
+        <div class="content_area">
+            <form action="." method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" value="Aplicar">
+            </form>
+        </div>
+
+{% endblock %}

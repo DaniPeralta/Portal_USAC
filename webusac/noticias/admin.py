@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Noticia, Experiencia, Pais, Anho, Universidad
+from .models import Noticia, Experiencia, Pais, Anho, Universidad, Beca, T_Beca
 
 # Register your models here.
 class NoticiaAdmin(admin.ModelAdmin):
@@ -15,3 +15,5 @@ admin.site.register(Experiencia)
 admin.site.register(Pais)
 admin.site.register(Anho)
 admin.site.register(Universidad)
+admin.site.register(Beca)
+admin.site.register(T_Beca)
