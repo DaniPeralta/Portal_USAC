@@ -16,8 +16,7 @@
                             <div id="beca{{ beca.id }}" class="accordion-section-content">
                                 <p>{{ beca.description }}</p>
                                 <p><a href="{{ beca.attach.url }}">Convocatoria</a>
-                                <a href="{% url "forms" %}">Aplicar</a> </p>
-
+                                <a href="{{ beca.get_absolute_url }}">Aplicar</a>
                             </div><!--end .accordion-section-content-->
                         </div><!--end .accordion-section-->
                     {% endfor %}

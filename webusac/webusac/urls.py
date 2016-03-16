@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^noticias/', include('noticias.urls', namespace='noticias',
@@ -28,7 +29,7 @@ urlpatterns = [
 	url(r'^$', 'noticias.views.noticia_lastest', name='noticia_lastest'),
 	url(r'^experiencias/$', 'noticias.views.experiencia_list', name='experiencia_list'),
 	url(r'^becas/$', 'noticias.views.beca_list', name='beca_list'),
-	url(r'^form/$', 'noticias.views.forms', name='forms')
+	url(r'^form/(?P<id>[-\w]+)/$', 'noticias.views.beca_form', name='beca_form')
 
 
 ]

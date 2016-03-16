@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Noticia, Experiencia, Pais, Beca, T_Beca
-from .forms import ApplyForm
+from .models import Noticia, Experiencia, Pais, Beca, T_Beca, Formulario
+from .forms import Datos_BecaForm
 
 # Create your views here.
 
@@ -26,11 +26,17 @@ def experiencia_list(request):
 	experiencias = Pais.objects.all()
 	return render(request, 'experiencia/experiences.html', {'experiencias': experiencias})
 
+
 def beca_list(request):
 	becas = T_Beca.objects.all()
 	return render(request, 'becas/list.html', {'t_becas': becas})
 
-def forms(request):
-	form = ApplyForm()
-	return render(request, 'becas/apply.html', {'form': form})
+
+def beca_form(request, id):
+	beca = get_object_or_404(Beca, id=id)
+	form = Datos_BecaForm()
+	t_form = get_object_or_404(Formulario, beca=beca)
+	campos = ["n_carne", "n_colegiado", "profesion", "edad"]
+	return render(request, 'becas/apply.html', {'form': form, 'beca': beca, 't_form': t_form
+												,'campos': campos})
 

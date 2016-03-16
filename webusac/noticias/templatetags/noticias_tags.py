@@ -13,3 +13,19 @@ def show_lastest_noticias():
 	slider = Noticia.objects.order_by('-publish')[:3]
 	lastest_noticias = Noticia.objects.order_by('-publish')[3:6]
 	return {'lastest_noticias': lastest_noticias, 'slider': slider}
+
+
+# For concat variables in apply.html
+@register.filter
+def get_attribute(obj, name):
+    return obj[name]
+
+@register.filter
+def get_attribute_label(obj, name):
+    return obj[name].label
+
+
+@register.filter
+def pr(dictionary, key):
+	p = "dictionary."+"n_carne"
+	return getattr(dictionary, key)

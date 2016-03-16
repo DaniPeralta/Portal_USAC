@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load noticias_tags %}
 
 
 {% block title %}Formulario{% endblock %}
@@ -8,7 +9,16 @@
     <h1 class="encabezado">Formulario</h1>
         <div class="content_area">
             <form action="." method="post">
-                {{ form.as_p }}
+                <div class="row">
+                    {% for campo in campos %}
+                        {% if t_form|pr:campo %}
+                            {{ form|get_attribute_label:campo }}
+                            {{ form|get_attribute:campo }}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
                 {% csrf_token %}
                 <input type="submit" value="Aplicar">
             </form>
