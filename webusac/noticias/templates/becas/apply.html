@@ -8,20 +8,36 @@
 {% block content %}
     <h1 class="encabezado">Formulario</h1>
         <div class="content_area">
-            <form action="." method="post">
-                <div class="row">
+        <div class="container">
+
+        <!-- Por ver cuando se envían bien el modelo -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">
+                            {{ message|safe }}
+                            <a href="#" class="close">✖</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <form action="." method="post" role="form">
                     {% for campo in campos %}
                         {% if t_form|pr:campo %}
-                            {{ form|get_attribute_label:campo }}
-                            {{ form|get_attribute:campo }}
+                            <div class="form-group">
+                              <label for="{{ campo }}">
+                                  {{ form|get_attribute_label:campo }}
+                              </label>
+                                {{ form|get_attribute:campo|addclass:'form-control' }}
+                            </div>
                             <br>
                         {% endif %}
                     {% endfor %}
-
-                </div>
                 {% csrf_token %}
                 <input type="submit" value="Aplicar">
             </form>
+        </div>
         </div>
 
 {% endblock %}

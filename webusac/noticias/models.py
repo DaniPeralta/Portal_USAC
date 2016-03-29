@@ -169,11 +169,11 @@ class Beca(models.Model):
 @python_2_unicode_compatible
 class Datos_Beca(models.Model):
 
-	beca = models.OneToOneField(Beca, related_name="data")
-	n_carne = models.PositiveIntegerField(blank=True)
-	n_colegiado = models.PositiveIntegerField(blank=True)
+	beca = models.ForeignKey(Beca, related_name="data")
+	n_carne = models.PositiveIntegerField(blank=True, null=True)
+	n_colegiado = models.PositiveIntegerField(blank=True, null=True)
 	trabaja_ing = models.BooleanField(default=False, blank=True)
-	n_reg_personal = models.PositiveIntegerField(blank=True)
+	n_reg_personal = models.PositiveIntegerField(blank=True, null=True)
 	unidad_trabajo = models.CharField(max_length=300, blank=True)
 	profesion = models.CharField(max_length=300, blank=True)
 	trabaja_usac = models.BooleanField(default=False, blank=True)
@@ -185,9 +185,9 @@ class Datos_Beca(models.Model):
 	nombre_completo = models.CharField(max_length=300, blank=True)
 	telefono = models.CharField(max_length=300, blank=True)
 	email = models.EmailField(blank=True)
-	edad = models.PositiveIntegerField(blank=True)
-	promedio = models.FloatField(blank=True)
-	creditos = models.FloatField(blank=True)
+	edad = models.PositiveIntegerField(blank=True, null=True)
+	promedio = models.FloatField(blank=True, null=True)
+	creditos = models.FloatField(blank=True, null=True)
 	calusac = models.CharField(max_length=2, blank=True,
 							  choices=(('si', 'Sí'),
 									   ('no', 'No'),))
@@ -209,9 +209,9 @@ class Datos_Beca(models.Model):
 	escuela_vac_ant_curso = models.CharField(max_length=100, blank=True)
 	escuela_vac_ant_fecha = models.CharField(max_length=10, blank=True)
 	lugar_trabajo = models.CharField(max_length=100, blank=True)
-	salario = models.FloatField(blank=True)
+	salario = models.FloatField(blank=True, null=True)
 	trabajo_padres = models.CharField(max_length=300, blank=True)
-	n_hermanos = models.PositiveSmallIntegerField(blank=True)
+	n_hermanos = models.PositiveSmallIntegerField(blank=True, null=True)
 	zona_vive = models.CharField(max_length=100, blank=True)
 	departamento_vive = models.CharField(max_length=200, blank=True)
 	casa = models.CharField(max_length=20, blank=True,
@@ -228,8 +228,14 @@ class Datos_Beca(models.Model):
 									   ('moto', 'Moto'),
 									   ('a pie', 'A Pie'),))
 
+	# Lo mejor sería Nombre del alumno más nombre de la Beca.
+
 	def __str__(self):
-		return self.beca
+		return self.beca.name
+
+	# Ver como poner como PK, no vale como único solamente
+	class Meta:
+		unique_together = (("beca", "n_carne"),)
 
 
 

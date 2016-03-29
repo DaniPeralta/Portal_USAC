@@ -18,5 +18,10 @@ class ApplyForm(forms.Form):
 class Datos_BecaForm(forms.ModelForm):
 	class Meta:
 		model = Datos_Beca
-		fields = ('n_carne', 'n_colegiado', 'profesion', 'edad')
-	#	fields = ('name', 'carnet_number', 'degree', 'email')
+		fields = '__all__'
+
+	def __init__(self, *args, **kwargs):
+		super(Datos_BecaForm, self).__init__(*args, **kwargs)
+		# Para que nos deje validar el formulario
+		self.fields['beca'].required = False
+

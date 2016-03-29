@@ -29,3 +29,7 @@ def get_attribute_label(obj, name):
 def pr(dictionary, key):
 	p = "dictionary."+"n_carne"
 	return getattr(dictionary, key)
+
+@register.filter
+def addclass(value, arg):
+    return value.as_widget(attrs={'class': arg})
