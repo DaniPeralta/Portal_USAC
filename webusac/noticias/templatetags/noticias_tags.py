@@ -22,14 +22,14 @@ def get_attribute(obj, name):
 
 @register.filter
 def get_attribute_label(obj, name):
-    return obj[name].label
+	return obj[name].label
 
 
+# Return the attribute of this field
 @register.filter
 def pr(dictionary, key):
-	p = "dictionary."+"n_carne"
 	return getattr(dictionary, key)
 
 @register.filter
 def addclass(value, arg):
-    return value.as_widget(attrs={'class': arg})
+    return value.as_widget(attrs={'class': arg, 'required': 'required'})

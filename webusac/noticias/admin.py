@@ -10,6 +10,16 @@ class NoticiaAdmin(admin.ModelAdmin):
 	date_hierarchy = 'publish'
 	ordering = ['publish']
 
+class Datos_BecaAdmin(admin.ModelAdmin):
+
+	list_display = ('nombre_completo', 'beca', 'beca_year', 'promedio')
+	ordering = ['beca', 'promedio', 'nombre_completo']
+	list_filter = ('beca', 'beca__course')
+
+	def beca_year(self, obj):
+		return obj.beca.course
+
+
 admin.site.register(Noticia, NoticiaAdmin)
 admin.site.register(Experiencia)
 admin.site.register(Pais)
@@ -18,4 +28,4 @@ admin.site.register(Universidad)
 admin.site.register(Beca)
 admin.site.register(T_Beca)
 admin.site.register(Formulario)
-admin.site.register(Datos_Beca)
+admin.site.register(Datos_Beca, Datos_BecaAdmin)

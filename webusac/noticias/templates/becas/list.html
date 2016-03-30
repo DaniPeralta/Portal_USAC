@@ -11,14 +11,17 @@
                 <h2 class="beca_type">{{ t_beca.type }}</h2>
                 <div class="accordion">
                     {% for beca in t_beca.becas.all %}
-                        <div class="accordion-section">
-                            <a class="accordion-section-title" href="#beca{{ beca.id }}">{{ beca.name }}</a>
-                            <div id="beca{{ beca.id }}" class="accordion-section-content">
-                                <p>{{ beca.description }}</p>
-                                <p><a href="{{ beca.attach.url }}">Convocatoria</a>
-                                <a href="{{ beca.get_absolute_url }}">Aplicar</a>
-                            </div><!--end .accordion-section-content-->
-                        </div><!--end .accordion-section-->
+                        {% if beca.date_end >= date %}
+                            <div class="accordion-section">
+                                <a class="accordion-section-title" href="#beca{{ beca.id }}">{{ beca.name }}</a>
+                                <div id="beca{{ beca.id }}" class="accordion-section-content">
+                                    <p>Finaliza la beca: {{ beca.date_end }}</p>
+                                    <p>{{ beca.description }}</p>
+                                    <p><a href="{{ beca.attach.url }}">Convocatoria</a>
+                                    <a href="{{ beca.get_absolute_url }}">Aplicar</a>
+                                </div><!--end .accordion-section-content-->
+                            </div><!--end .accordion-section-->
+                        {% endif %}
                     {% endfor %}
 		        </div><!--end .accordion-->
             {% endfor %}

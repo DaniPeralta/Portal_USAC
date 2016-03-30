@@ -28,5 +28,19 @@
             {% if not noticias|length|divisibleby:3 %}
                 </div>
             {% endif %}
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if noticias.has_previous %}
+                        <a href="?page={{ noticias.previous_page_number }}">Noticias más Nuevas</a>
+                    {% endif %}
+                    <span class="current">
+                        Página {{ noticias.number }}.
+                    </span>
+                    {% if noticias.has_next %}
+                        <a href="?page={{ noticias.next_page_number }}">Noticias más Antiguas</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
 {% endblock %}
