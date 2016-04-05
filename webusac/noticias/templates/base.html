@@ -31,9 +31,7 @@
 
 				<div class="main_menu_area">
 					<ul id="nav">
-						<li><a href="{% url "noticia_lastest" %}">Inicio</a>
-
-						</li>
+						<li><a href="{% url "noticia_lastest" %}">Inicio</a></li>
 						<li><a href="{% url "noticias:noticia_list" %}">Noticias</a></li>
 						<li><a href="{% url "beca_list" %}">Becas</a>
 						<!--	<ul>
@@ -59,18 +57,16 @@
 					<div class="footer_top_area">
 						<div class="footer_menu">
 							<ul id="f_menu">
-								<li><a href="">Inicio</a></li>
-								<li><a href="">Noticias</a></li>
-								<li><a href="">Becas</a></li>
-								<li><a href="">Experiencias</a></li>
+						        <li><a href="{% url "noticia_lastest" %}">Inicio</a></li>
+						        <li><a href="{% url "noticias:noticia_list" %}">Noticias</a></li>
+						        <li><a href="{% url "beca_list" %}">Becas</a>
+						        <li><a href="{% url "experiencia_list" %}">Experiencias</a></li>
 							</ul>
 						</div>
 
 						<div class="copyright_text">
-							<p>Copyright © 2011 The News Reporter Inc. All rights reserved. PSD by GraphicsFuel.com<br/>
-								Reproduction in whole or in part in any form or medium without express written permission
-								of The News Reporter Inc. is prohibited. The trade marks and images used in the
-								design are the copyright of their respective owners. They are used only for display purpose.
+							<p>UNIVERSIDAD DE SAN CARLOS DE GUATEMALA, ZONA 12. FACULTAD DE INGENIERÍA<br/>
+                                Copyright © 2016 Daniel Peralta de la Herrán. All rights reserved.
 							</p>
 						</div>
 					</div>

@@ -6,7 +6,7 @@ from .models import Noticia, Experiencia, Pais, Beca, T_Beca, Formulario, Datos_
 from .forms import Datos_BecaForm
 from django.contrib import messages
 import pytz
-
+import copy
 # Prueba log
 # import the logging library
 #import logging
@@ -59,10 +59,16 @@ def beca_form(request, id):
 	beca = get_object_or_404(Beca, id=id)
 	form = Datos_BecaForm(instance=beca)
 	t_form = get_object_or_404(Formulario, beca=beca)
-	campos = Formulario._meta.get_all_field_names()
+	campos2 = Formulario._meta.get_fields()
+
+	campos = []
+	for camp in campos2:
+		campos += [camp.name]
+
 	campos.remove('name_form')
 	campos.remove('id')
 	campos.remove('beca')
+
 	# messages.error(request, timezone.datetime.now().date())
 
 	# Almacenar datos del Formulario

@@ -13,12 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
+
+from noticias import views
 
 from django.conf import settings
 from django.conf.urls.static import static
-
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,10 +28,12 @@ urlpatterns = [
 							   app_name='noticias')),
 
 	# Mejorar esto. Deprecated
-	url(r'^$', 'noticias.views.noticia_lastest', name='noticia_lastest'),
-	url(r'^experiencias/$', 'noticias.views.experiencia_list', name='experiencia_list'),
-	url(r'^becas/$', 'noticias.views.beca_list', name='beca_list'),
-	url(r'^form/(?P<id>[-\w]+)/$', 'noticias.views.beca_form', name='beca_form')
+	#url(r'^$', 'noticias.views.noticia_lastest', name='noticia_lastest'),
+	url(r'^$', views.noticia_lastest, name='noticia_lastest'),
+
+	url(r'^experiencias/$', views.experiencia_list, name='experiencia_list'),
+	url(r'^becas/$', views.beca_list, name='beca_list'),
+	url(r'^form/(?P<id>[-\w]+)/$', views.beca_form, name='beca_form')
 
 
 ]

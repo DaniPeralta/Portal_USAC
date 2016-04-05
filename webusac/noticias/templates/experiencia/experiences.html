@@ -14,30 +14,36 @@
 
 <!--Texto -->
 
-        <div class="row col-md-offset-2 col-md-8">
-            <p>No hay forma más sencilla y  enriquecedora que aprender de las vivencias de los demás. Es por esto que hemos abierto este espacio para ti. Envíanos tus fotográfias y platícanos tus experiencias, buenas y malas, de esta manera ayudarás a futuros estudiantes de intercambio que tal vez se enfrentarán a las mismas situaciones que tú a superar esos pequeños obstáculos.</p>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <p>No hay forma más sencilla y  enriquecedora que aprender de las vivencias de los demás. Es por esto que hemos abierto este espacio para ti. Envíanos tus fotográfias y platícanos tus experiencias, buenas y malas, de esta manera ayudarás a futuros estudiantes de intercambio que tal vez se enfrentarán a las mismas situaciones que tú a superar esos pequeños obstáculos.</p>
 
-            <p>Envíanos tus archivos en PDF con algunas fotografías al correo: ssuinternacional@gmail.com</p>
+                <p>Envíanos tus archivos en PDF con algunas fotografías al correo: ssuinternacional@gmail.com</p>
+            </div>
         </div>
 
-        <div class="row col-md-offset-3 col-md-6">
-            {% for pais in experiencias  %}
-                <div class="center_img">
-                    <img src="{{ pais.image.url }}" class="bandera">
-                    <h4>{{ pais.name }}</h4>
-                </div>
-                {% regroup pais.experiences.all by year as exp_list  %}
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                {% for pais in experiencias  %}
+                    <div class="center_img">
+                        <img src="{{ pais.image.url }}" class="bandera">
+                        <h4>{{ pais.name }}</h4>
+                    </div>
+                    {% regroup pais.experiences.all by year as exp_list  %}
 
-                {% for exps in exp_list %}
-                    <h5 class="year_exp">{{ exps.grouper }}</h5>
-                    {% for experiencia in exps.list %}
-                        <p><a href="{{ experiencia.experience.url }}">{{ experiencia.name_student }} - {{ experiencia.university }}</a></p>
+                    {% for exps in exp_list %}
+                        <h5 class="year_exp">{{ exps.grouper }}</h5>
+                        {% for experiencia in exps.list %}
+                            <p>
+                                <a href="{{ experiencia.experience.url }}" class="student">{{ experiencia.name_student }} </a>
+                                <a href="{{ experiencia.thesis.url }}" class="tesis">Tesis</a>
+
+                            <span class="university"> - {{ experiencia.university }}</span></p>
+                        {% endfor %}
                     {% endfor %}
-
+                    <hr/>
                 {% endfor %}
-
-                <hr/>
-            {% endfor %}
+            </div>
         </div>
 
     </div>

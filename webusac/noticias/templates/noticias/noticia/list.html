@@ -14,14 +14,13 @@
                 {% cycle '<div class="row">' '' '' as div %}
                         <div class="col-sm-6 col-md-4">
                             <!--Comprobar que funciona fuera de DEBUG. -->
-                            <img src="{{ noticia.image.url }}" alt="img1">
-                            <div class="caption">
+                            <div class="thumbnail">
+                            <img src="{{ noticia.image.url }}" class="portrait"></div>
                                 <h3>{{ noticia.title }}</h3>
                                 <p>{{ noticia.body|truncatewords:30|linebreaks }}</p>
                                 <p>
                                     <a href="{{ noticia.get_absolute_url }}" class="popular_more">Leer +</a>
                                 </p>
-                            </div>
                         </div>
                 {% cycle '' '' '</div>' as div %}
             {% endfor %}
