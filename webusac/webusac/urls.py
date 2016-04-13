@@ -32,8 +32,9 @@ urlpatterns = [
 	url(r'^$', views.noticia_lastest, name='noticia_lastest'),
 
 	url(r'^experiencias/$', views.experiencia_list, name='experiencia_list'),
+	url(r'^masinfo/$', views.masinfo_list, name='masinfo_list'),
 	url(r'^becas/$', views.beca_list, name='beca_list'),
-	url(r'^form/(?P<id>[-\w]+)/$', views.beca_form, name='beca_form')
+	url(r'^form/(?P<year>\d{4})/(?P<id>[-\w]+)/(?P<slug>[-\w]+)/$', views.beca_form, name='beca_form')
 
 
 ]

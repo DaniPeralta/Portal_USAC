@@ -16,9 +16,9 @@
                                 <a class="accordion-section-title" href="#beca{{ beca.id }}">{{ beca.name }}</a>
                                 <div id="beca{{ beca.id }}" class="accordion-section-content">
                                     <p>Finaliza la beca: {{ beca.date_end }}</p>
-                                    <p>{{ beca.description }}</p>
-                                    <p><a href="{{ beca.attach.url }}">Convocatoria</a>
-                                    <a href="{{ beca.get_absolute_url }}">Aplicar</a>
+                                    <p>{{ beca.description|linebreaks }}</p>
+                                    <p class="becas"><a href="{{ beca.attach.url }}"> <input type="submit" value="Convocatoria" class="btn btn-info"></a>
+                                    <a href="{{ beca.get_absolute_url }}"> <input type="submit" value="Aplicar" class="btn btn-primary"></a></p>
                                 </div><!--end .accordion-section-content-->
                             </div><!--end .accordion-section-->
                         {% endif %}

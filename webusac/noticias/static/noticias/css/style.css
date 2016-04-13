@@ -404,6 +404,14 @@ margin-top: 0;}
     text-transform: capitalize;
 }
 
+.becas{
+    text-align: center
+}
+
+.becas a{
+    margin-right: 3em;
+}
+
 /* Experiences css */
 
 .tesis{
@@ -422,4 +430,34 @@ margin-top: 0;}
     /*padding-right: 10em;
         float: right;
 */
+}
+
+/* Form */
+
+.error{
+    background: #f43e2d;
+    opacity: 0.9;
+    padding: 20px 20px 20px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius:3px;
+
+}
+
+.success{
+    background: #63f437;
+    opacity: 0.9;
+    padding: 20px 20px 20px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius:3px;
+}
+
+.masinfo{
+    color: #3a87ad;
+}
+
+.space{
+    	padding-bottom:15px;
+
 }

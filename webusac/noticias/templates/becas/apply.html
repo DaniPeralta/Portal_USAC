@@ -14,18 +14,25 @@
             {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
-                        <li class="{{ message.tags }}">
+                        <p class="{{ message.tags }}">
                             {{ message|safe }}
-                            <a href="#" class="close">✖</a>
-                        </li>
+                        </p>
                     {% endfor %}
                 </ul>
             {% endif %}
 
             <form action="." method="post" role="form">
                     {% for campo in campos %}
-                        {% if t_form|pr:campo %}
+                        {% if t_form|pr:campo == 'requerido' %}
                             <div class="form-group">
+                              <label for="{{ campo }}">
+                                  {{ form|get_attribute_label:campo }}
+                              </label>
+                                {{ form|get_attribute:campo|addclassrequired:'form-control' }}
+                            </div>
+                            <br>
+                        {% elif t_form|pr:campo == 'opcional' or t_form|pr:campo == 'si'  %}
+                             <div class="form-group">
                               <label for="{{ campo }}">
                                   {{ form|get_attribute_label:campo }}
                               </label>
@@ -35,7 +42,7 @@
                         {% endif %}
                     {% endfor %}
                 {% csrf_token %}
-                <input type="submit" value="Aplicar">
+                <input type="submit" value="Aplicar" class="btn btn-primary btn-block">
             </form>
         </div>
         </div>

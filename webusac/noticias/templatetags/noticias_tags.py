@@ -31,5 +31,9 @@ def pr(dictionary, key):
 	return getattr(dictionary, key)
 
 @register.filter
+def addclassrequired(value, arg):
+	return value.as_widget(attrs={'class': arg, 'required': 'required'})
+
+@register.filter
 def addclass(value, arg):
-    return value.as_widget(attrs={'class': arg, 'required': 'required'})
+	return value.as_widget(attrs={'class': arg})

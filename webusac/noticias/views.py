@@ -1,18 +1,13 @@
+# coding=utf-8
+
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
+from django.db import IntegrityError
 
-from .models import Noticia, Experiencia, Pais, Beca, T_Beca, Formulario, Datos_Beca
+from .models import Noticia, MasInfo, Pais, Beca, T_Beca, Formulario
 from .forms import Datos_BecaForm
 from django.contrib import messages
-import pytz
-import copy
-# Prueba log
-# import the logging library
-#import logging
-
-# Get an instance of a logger
-#logger = logging.getLogger(__name__)
 
 def noticia_list(request):
 	noticias_list = Noticia.objects.all()
@@ -46,6 +41,9 @@ def experiencia_list(request):
 	experiencias = Pais.objects.all()
 	return render(request, 'experiencia/experiences.html', {'experiencias': experiencias})
 
+def masinfo_list(request):
+	masinfo = MasInfo.objects.all()
+	return render(request, 'moreinfo/moreinfo.html', {'masinfo': masinfo})
 
 def beca_list(request):
 	# Todos los tipos de beca que existen
@@ -55,7 +53,7 @@ def beca_list(request):
 	return render(request, 'becas/list.html', {'t_becas': becas, 'date': date})
 
 
-def beca_form(request, id):
+def beca_form(request,id, year, slug):
 	beca = get_object_or_404(Beca, id=id)
 	form = Datos_BecaForm(instance=beca)
 	t_form = get_object_or_404(Formulario, beca=beca)
@@ -86,12 +84,15 @@ def beca_form(request, id):
 				# Asignamos la beca a los datos de la beca
 
 				new_beca.beca = beca
-				new_beca.save()
+				try:
+					new_beca.save()
+					messages.success(request, 'Registrado Correctamente')
 				#messages.error(request, timezone.now())
-
+				except IntegrityError:
+					messages.error(request, 'Usted ya está registrado en la beca')
 		else:
-			"""messages.error(request, 'Po va mal')
-			# messages.error(request, beca_form.errors.as_data())"""
+			messages.error(request, 'Error mostrando el formulario')
+			#messages.error(request, beca_form.errors.as_data())
 	else:
 		beca_form = Datos_BecaForm()
 
