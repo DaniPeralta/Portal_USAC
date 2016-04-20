@@ -12,10 +12,10 @@ class NoticiaAdmin(admin.ModelAdmin):
 
 class Datos_BecaAdmin(admin.ModelAdmin):
 
-	list_display = ('nombre_completo', 'beca', 'beca_year', 'promedio', 'aceptado')
+	list_display = ('dpi', 'nombre_completo', 'beca', 'beca_year', 'promedio', 'aceptado')
 	ordering = ['beca', 'promedio', 'nombre_completo']
-	list_filter = ('beca', 'beca__course', 'genero', 'edad', 'status', 'trabaja_ing')
-	search_fields = ('n_carne', 'profesion', 'carrera')
+	list_filter = ('beca', 'beca__course', 'genero', 'edad', 'status', 'trabaja_ing', 'carrera')
+	search_fields = ('n_carne',)
 	actions = ['cambiar_aceptado', 'cambiar_denegado']
 
 
@@ -49,6 +49,9 @@ class BecaAdmin(admin.ModelAdmin):
 
 	prepopulated_fields = {'slug': ('name',)}
 
+class FormularioAdmin(admin.ModelAdmin):
+	readonly_fields = ('dpi', 'email')
+
 
 admin.site.register(Noticia, NoticiaAdmin)
 admin.site.register(Experiencia)
@@ -57,6 +60,6 @@ admin.site.register(Anho)
 admin.site.register(Universidad)
 admin.site.register(Beca, BecaAdmin)
 admin.site.register(T_Beca)
-admin.site.register(Formulario)
+admin.site.register(Formulario, FormularioAdmin)
 admin.site.register(MasInfo)
 admin.site.register(Datos_Beca, Datos_BecaAdmin)

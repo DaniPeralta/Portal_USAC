@@ -8,6 +8,13 @@ from django.db import IntegrityError
 from .models import Noticia, MasInfo, Pais, Beca, T_Beca, Formulario
 from .forms import Datos_BecaForm
 from django.contrib import messages
+from django.core.mail import send_mail
+
+# Para poder mandar los email sin problemas unicode.
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 
 def noticia_list(request):
 	noticias_list = Noticia.objects.all()
@@ -84,11 +91,26 @@ def beca_form(request,id, year, slug):
 				# Asignamos la beca a los datos de la beca
 
 				new_beca.beca = beca
+
 				try:
+					cd = beca_form.cleaned_data
+					subject = 'Registrado correctamente en la beca: "'+beca.name+'"'
+					message = 'Usted se ha registrado con éxito en la beca "' + beca.name + \
+							  '"\n\n\n Gracias por su participación. Pronto se conocerá el resultado.\n\n' \
+							  'Universidad San Carlos de Guatemala. Facultad de Ingenería.'
+
 					new_beca.save()
 					messages.success(request, 'Registrado Correctamente')
-				#messages.error(request, timezone.now())
+					try:
+						send_mail(subject,
+								  message,
+								  'dani.peralta.de@gmail.com', [cd['email']])
+					except Exception as e:
+						messages.error(request, 'Error en el envío del mail')
+						#messages.error(request, e)
+
 				except IntegrityError:
+					#messages.error(request, beca_form.errors.as_data())
 					messages.error(request, 'Usted ya está registrado en la beca')
 		else:
 			messages.error(request, 'Error mostrando el formulario')

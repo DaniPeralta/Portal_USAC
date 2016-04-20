@@ -76,9 +76,15 @@ WSGI_APPLICATION = 'webusac.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'production': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+	'default': {
+    	'NAME': 'django_db',
+    	'ENGINE': 'django.db.backends.mysql',
+    	'USER': '',
+    	'PASSWORD': ''
     }
 }
 
@@ -125,3 +131,11 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+#Config EMAIL
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
