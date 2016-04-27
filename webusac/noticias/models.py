@@ -81,7 +81,7 @@ class Experiencia(models.Model):
 	country = models.ForeignKey(Pais, related_name='experiences', verbose_name='País')
 	university = models.ForeignKey(Universidad, related_name='student', verbose_name='Universidad')
 	year = models.ForeignKey(Anho, related_name='experiences', verbose_name='Año')
-	thesis = models.FileField('Tesis', upload_to='thesis')
+	thesis = models.FileField('Tesis', upload_to='thesis', blank=True, null=True)
 	created = models.DateTimeField('Creado', auto_now_add=True)
 	updated = models.DateTimeField('Modificado', auto_now_add=True)
 

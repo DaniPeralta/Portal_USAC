@@ -36,8 +36,9 @@
                         {% for experiencia in exps.list %}
                             <p>
                                 <a href="{{ experiencia.experience.url }}" class="student">{{ experiencia.name_student }} </a>
-                                <a href="{{ experiencia.thesis.url }}" class="tesis">Tesis</a>
-
+                                {% if experiencia.thesis.url != '' %}
+                                    <a href="{{ experiencia.thesis.url }}" class="tesis">Tesis</a>
+                                {% endif %}
                             <span class="university"> - {{ experiencia.university }}</span></p>
                         {% endfor %}
                     {% endfor %}
