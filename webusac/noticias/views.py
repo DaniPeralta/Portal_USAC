@@ -9,6 +9,8 @@ from .models import Noticia, MasInfo, Pais, Beca, T_Beca, Formulario
 from .forms import Datos_BecaForm
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+
 
 # Para poder mandar los email sin problemas unicode.
 import sys
@@ -95,16 +97,26 @@ def beca_form(request,id, year, slug):
 				try:
 					cd = beca_form.cleaned_data
 					subject = 'Registrado correctamente en la beca: "'+beca.name+'"'
-					message = 'Usted se ha registrado con éxito en la beca "' + beca.name + \
+					message_txt = 'Usted se ha registrado con éxito en la beca "' + beca.name + \
 							  '"\n\n\n Gracias por su participación. Pronto se conocerá el resultado.\n\n' \
 							  'Universidad San Carlos de Guatemala. Facultad de Ingenería.'
+					message_html = '<h1>Registrado en la beca <strong>"'+beca.name+'"</strong></h1> <hr/> ' \
+									'<br><p>Usted se ha registrado con éxito en la beca <strong>"' + beca.name + \
+							  '"</strong></p><p>Gracias por su participación. Pronto se conocerá el resultado.</p>' \
+							  'Universidad San Carlos de Guatemala. Facultad de Ingenería.'
+
+					from_email = ''
 
 					new_beca.save()
 					messages.success(request, 'Registrado Correctamente')
 					try:
-						send_mail(subject,
+						msg = EmailMultiAlternatives(subject, message_txt, from_email, [cd['email']])
+						msg.attach_alternative(message_html, "text/html")
+						msg.send()
+						"""	send_mail(subject,
 								  message,
-								  'dani.peralta.de@gmail.com', [cd['email']])
+								  from_email, [cd['email']])"""
+
 					except Exception as e:
 						messages.error(request, 'Error en el envío del mail')
 						#messages.error(request, e)
