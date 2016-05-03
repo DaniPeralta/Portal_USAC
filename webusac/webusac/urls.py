@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+	url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^noticias/', include('noticias.urls', namespace='noticias',
 							   app_name='noticias')),
 
